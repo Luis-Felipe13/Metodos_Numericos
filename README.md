@@ -1,4 +1,5 @@
 Dentro desse repositório, estarão os seguintes códigos:
+
 Raizes de Equações:
     Método de Bissecção
     Método de Newton-Raphson
