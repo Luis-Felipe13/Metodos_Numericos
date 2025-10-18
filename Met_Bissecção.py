@@ -7,7 +7,6 @@ pi = int(input("Digite o ponto inicial:"))
 pf = int(input("DIgite o ponto final:"))
 
 f = eval(f"lambda x: {func}", {"math": math})
-flag = 0
 cont = pi
 find_sqrt = False
 while cont < pf:
