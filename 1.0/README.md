@@ -1,3 +1,8 @@
+------------------------------------------------------
+ATENÇÃO:
+Alguns dos códigos presentes na pasta "1.0" foram realizados com o auxílio de Inteligência Artificial (Gemini)
+------------------------------------------------------
+
 Dentro desse repositório, estarão os seguintes códigos:
 
 Raizes de Equações:
