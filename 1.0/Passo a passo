@@ -1,0 +1,40 @@
+1- Defina o ponto inicial do teste.
+1.1- Calcule o valor da função no ponto inicial
+2- Loop começa. Calculamos novamente, agora no proximo ponto. (pf)
+2.1: Atualiza o ponto (apenas depois do primeiro loop)
+3- Verificamos Bolzano
+4- Reinicia o Loop.
+
+Método de Bissecção:
+1- Verifica Parada: b - a > tol?
+2- Calcular ponto médio. (a + b)/2
+3- Calcular f(m)
+3.1 Se f(m) positivo, altera b, se não, altera a
+4- Loop se repete.
+
+Método de Falsa Posição:
+1- Identico ao Bissecção, diferença está no calculo do ponto médio:
+m = (a * fb - b * fa) / (fb - fa)
+
+Método Newthon-Rapson:
+1- Seleciona x0
+2- Calcula a f(x) e a f'(x)
+3- Calcula xN+1 = xN - (f(x)/f'(x))
+4- Calcula Erro = xN+1 - xN
+5- Se erro > tol = loop, Se não, resultado.
+
+Método da Secante:
+1- Definir Valores iniciais
+2- Calcular xn+1 = x_i - f(x_i) * (x_i - x_ant) / (f(x_i) - f(x_ant)
+3- Calcular erro = xn+1 - x_ui
+4- Se erro > tol = loop, Se não, resultado.
+
+Eliminação de Gauss:
+1- Pivoteamento se necessário
+2- Eliminar a21:
+	2.1- Calcular m21
+	2.2- Calcular LN = L2 - m21 . L1
+3- Eliminar a31:
+	3.1- Calcular m31
+	3.2- Calcular LN = L3 - m31 . L1
+4- Seguir para a próxima coluna
