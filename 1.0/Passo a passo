@@ -23,6 +23,43 @@ Método Newthon-Rapson:
 4- Calcula Erro = xN+1 - xN
 5- Se erro > tol = loop, Se não, resultado.
 
+Ajuste de Curvas:
+n = len(x_pontos) # n: Representa o número total de pontos de dados (múltiplos termos nos somatórios).
+    x = np.array(x_pontos, dtype=float) # x: A coluna de valores independentes (x_i).
+    y = np.array(y_pontos, dtype=float) # y: A coluna de valores dependentes (y_i).
+
+    if n < grau + 1: # Verifica se a quantidade de dados é suficiente para determinar o polinômio do 'grau' escolhido.
+        raise ValueError(f"São necessários pelo menos {grau + 1} pontos para um ajuste de grau {grau}.")
+
+    # Monta a matriz do sistema normal [A][C] = [B]
+    A = np.zeros((grau + 1, grau + 1)) # A: A matriz simétrica que armazena os somatórios de potências de x.
+    B = np.zeros(grau + 1) # B: O vetor que armazena os somatórios dos produtos (y_i * x_i^i).
+
+    for i in range(grau + 1): # i: Controla a potência de x ou (x * y) no somatório atual.
+        for j in range(grau + 1): # j: Controla a potência de x na dimensão da Matriz A (A_{i,j}).
+            # A[i, j]: Calcula o termo somatório(x^(i+j)). Ex: A[0,1] = somatório(x^1), A[1,1] = somatório(x^2).
+            A[i, j] = np.sum(x ** (i + j)) 
+        
+        # B[i]: Calcula o termo somatório(y * x^i). Ex: B[0] = somatório(y), B[1] = somatório(x * y).
+        B[i] = np.sum(y * x ** i)
+
+    # Resolve o sistema linear A * Coeficientes = B
+    try:
+        # Coeficientes: Encontra os valores de c_0, c_1, c_2, etc., que satisfazem o sistema de equações.
+        coeficientes = np.linalg.solve(A, B) 
+    except np.linalg.LinAlgError: 
+        # Exceção: Indica que o sistema não pode ser resolvido de forma estável (matriz singular).
+        raise Exception("O sistema de equações normais é singular ou mal condicionado.")
+
+    # Formatação da função resultante para exibição
+    polinomio_str = " + ".join( # Constrói o polinômio final P(x) = c_0 + c_1*x + c_2*x^2 + ...
+        [f"{c:.4f}x^{i}" if i > 1 else f"{c:.4f}x" if i == 1 else f"{c:.4f}"
+         for i, c in enumerate(coeficientes)]
+    )
+    polinomio_str = polinomio_str.replace("x^1", "x").replace("x^0", "") # Limpa a notação de expoentes.
+
+    return coeficientes, polinomio_str
+
 Método da Secante:
 1- Definir Valores iniciais
 2- Calcular xn+1 = x_i - f(x_i) * (x_i - x_ant) / (f(x_i) - f(x_ant)
