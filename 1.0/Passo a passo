@@ -38,3 +38,10 @@ Eliminação de Gauss:
 	3.1- Calcular m31
 	3.2- Calcular LN = L3 - m31 . L1
 4- Seguir para a próxima coluna
+
+Interpolação de Lagrange:
+1- Definir os pontos xN e yN
+2- Para cada conjunto de pontos definidos, é necessario calcular um Ln
+	2.1- Para cada LN = ((x - x0) . (x - x1) . (x - xn)...) / ((xi - x0) . (xi - x1) . (xi - xn)...)
+3- Calcular o polinomio
+	3.1- PN(x) = y0.L0 + y1.L1 + yN.LN + ...
